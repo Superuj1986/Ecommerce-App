@@ -1,7 +1,7 @@
 import { v2 as cloudinary } from "cloudinary"
 import productModel from "../models/productModel.js"
 
-const addProduct = async (res,req) => {
+const addProduct = async (req,res) => {
     try {
         const {name,description,price,category,subCategory,sizes,bestseller} = req.body
         const image1 = req.files.image1 && req.files.image1[0]
@@ -40,7 +40,7 @@ const addProduct = async (res,req) => {
     }
 }
 
-const listProduct = async (res,req) => {
+const listProduct = async (req,res) => {
     try {
         const products = await productModel.find({});
         res.json({success:true,products})
@@ -50,7 +50,7 @@ const listProduct = async (res,req) => {
     }
 }
 
-const removeProduct = async (res,req) => {
+const removeProduct = async (req,res) => {
     try {
         await productModel.findByIdAndDelete(req.body.id)
         res.json({success:true,message:"Product Removed"})
