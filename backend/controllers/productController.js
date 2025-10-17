@@ -71,4 +71,19 @@ const singleProduct = async (res,req) => {
     }
 }
 
-export {listProduct,addProduct,singleProduct,removeProduct}
+const updateProduct = async (req,res) => {
+    try {
+        const data = req.body
+        await productModel.findByIdAndUpdate(
+            req.params.id,
+            data, 
+            {new: true}
+        )
+        res.json({success:true,message:"Product Updated"})
+    } catch (error) {
+        console.log(error)
+        res.json({success:false,message:error.message})
+    }
+}
+
+export {listProduct,addProduct,singleProduct,removeProduct,updateProduct}

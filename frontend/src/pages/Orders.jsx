@@ -35,7 +35,7 @@ const Orders = () => {
   return (
     <div className='border-t pt-16'>
       <div className='text-2xl'>
-        <Title text1={'MY'} text2={'ORDERS'}/>
+        <Title text1={'Đơn hàng'} text2={'Của tôi'}/>
       </div>
       <div className=''>
           {
@@ -47,11 +47,11 @@ const Orders = () => {
                     <p className='sm:text-base font-medium'>{item.name}</p>
                     <div className='flex items-center gap-3 mt-2 text-base text-gray-700'>
                       <p className='text-lg'>{currency}{item.price}</p>
-                      <p>Quantity: {item.quantity}</p>
-                      <p>Size: {item.size}</p>
+                      <p>Số lượng: {item.quantity}</p>
+                      <p>Kích thước: {item.size}</p>
                     </div>
-                    <p className='mt-2'>Date: <span className='text-gray-400'>{new Date(item.date).toDateString()}</span></p>
-                    <p className='mt-2'>Payment: <span className='text-gray-400'>{item.paymentMethod}</span></p>
+                    <p className='mt-2'>Ngày: <span className='text-gray-400'>{new Date(item.date).toDateString()}</span></p>
+                    <p className='mt-2'>Thanh toán: <span className='text-gray-400'>{item.paymentMethod}</span></p>
                   </div>
                 </div>
                 <div className='md:w-1/2 flex justify-between'>
@@ -59,7 +59,7 @@ const Orders = () => {
                     <p className='min-w-2 h-2 rounded-full bg-green-500'></p>
                     <p className='text-sm md:text-base'>{item.status}</p>
                   </div>
-                  <button onClick={loadOrderData} className='border px-4 py-2 text-sm font-medium rounded-sm'>Track order</button>
+                  <button onClick={loadOrderData} className='border px-4 py-2 text-sm font-medium rounded-sm'>Theo dõi đơn hàng</button>
                 </div>
               </div>
             ))

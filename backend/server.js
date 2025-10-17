@@ -16,6 +16,7 @@ connectCloudinary()
 app.use(express.json())
 app.use(cors())
 
+
 app.use('/api/user',userRouter)
 app.use('/api/product',productRouter)
 app.use('/api/cart',cartRouter)

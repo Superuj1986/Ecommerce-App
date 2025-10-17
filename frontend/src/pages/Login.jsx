@@ -45,15 +45,15 @@ const Login = () => {
         <p className='prata-regular text-3xl'>{currentState}</p>
         <hr className='border-none h-[1.5px] w-8 bg-gray-800'/>
       </div>
-      { currentState === 'Login'?'':<input onChange={(e)=>setName(e.target.value)} value={name} className='w-full px-3 py-2 border border-gray-800' type='text' placeholder='Name'/>}
+      { currentState === 'Login'?'':<input onChange={(e)=>setName(e.target.value)} value={name} className='w-full px-3 py-2 border border-gray-800' type='text' placeholder='Tên'/>}
       <input onChange={(e)=>setEmail(e.target.value)} value={email} className='w-full px-3 py-2 border border-gray-800' type='email' placeholder='Email' required/>
-      <input onChange={(e)=>setPassword(e.target.value)} value={password} className='w-full px-3 py-2 border border-gray-800' type='password' placeholder='Password' required/>
+      <input onChange={(e)=>setPassword(e.target.value)} value={password} className='w-full px-3 py-2 border border-gray-800' type='password' placeholder='Mật khẩu' required/>
       <div className='w-full flex justify-between text-sm mt-[-8px]'>
-        <p className='cursor-pointer'>Forgot your password</p>
+        <p className='cursor-pointer'>Quên mật khẩu</p>
         {
           currentState === 'Login' 
-          ? <p onClick={()=>setCurrentState('Sign Up')} className='cursor-pointer'>Create account</p>
-          : <p onClick={()=>setCurrentState('Login')} className='cursor-pointer'>Login here</p>
+          ? <p onClick={()=>setCurrentState('Sign Up')} className='cursor-pointer'>Tạo tài khoản</p>
+          : <p onClick={()=>setCurrentState('Login')} className='cursor-pointer'>Đăng nhập</p>
         }
       </div>
       <button className='bg-black text-white font-light px-8 py-2 mt-4'>{currentState === 'Login' ? 'Sign in':'Sign up'}</button>
