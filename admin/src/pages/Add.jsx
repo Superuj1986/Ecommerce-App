@@ -33,7 +33,7 @@ const Add = ({token}) => {
       image3 && formData.append("image3",image3)
       image4 && formData.append("image4",image4)
 
-      const response = await axios.post(backendUrl + "/api/product/add",formData,{headers:{token}})
+      const response = await axios.post(backendUrl + "/api/product/add",formData)
       if (response.data.success){
         toast.success(response.data.message)
         setName('')
@@ -54,7 +54,7 @@ const Add = ({token}) => {
   return (
     <form onSubmit={onSubmitHandler} className='flex flex-col w-full items-start gap-3'>
       <div>
-        <p className='mb-2'>Upload Image</p>
+        <p className='mb-2'>Tải ảnh</p>
         <div className='flex gap-2'>
           <label htmlFor="image1">
             <img className='w-20' src={!image1 ? assets.upload_area : URL.createObjectURL(image1)}/>
@@ -75,37 +75,37 @@ const Add = ({token}) => {
         </div>
       </div>
       <div className='w-full'>
-        <p className='mb-2'>Product Name</p>
-        <input onChange={(e)=>setName(e.target.value)} value={name} className='w-full max-w-[500px] px-3 py-2' type='text' placeholder='Type here' required/>
+        <p className='mb-2'>Tên sản phẩm</p>
+        <input onChange={(e)=>setName(e.target.value)} value={name} className='w-full max-w-[500px] px-3 py-2' type='text' placeholder='Nhập tên' required/>
       </div>
       <div className='w-full'>
-        <p className='mb-2'>Product Description</p>
-        <input onChange={(e)=>setDescription(e.target.value)} value={description} className='w-full max-w-[500px] px-3 py-2' type='text' placeholder='Write content here' required/>
+        <p className='mb-2'>Mô tả sản phẩm</p>
+        <input onChange={(e)=>setDescription(e.target.value)} value={description} className='w-full max-w-[500px] px-3 py-2' type='text' placeholder='Nhập mô tả' required/>
       </div>
       <div className='flex flex-col sm:flex-row gap-2 w-full sm:gap-8'>
         <div>
-          <p className='mb-2'>Product Category</p>
+          <p className='mb-2'>Phân loại</p>
           <select onChange={(e)=>setCategory(e.target.value)} className='w-full px-3 py-2'>
-            <option value="Men">Men</option>
-            <option value="Women">Women</option>
-            <option value="Kids">Kids</option>
+            <option value="Men">Nam</option>
+            <option value="Women">Nữ</option>
+            <option value="Kids">Trẻ em</option>
           </select>
         </div>
         <div>
-          <p className='mb-2'>Sub Category</p>
+          <p className='mb-2'>Phân loại</p>
           <select onChange={(e)=>setSubCategory(e.target.value)} className='w-full px-3 py-2'>
-            <option value="Topwear">Topwear</option>
-            <option value="Bottomwear">Bottomwear</option>
-            <option value="WinterWear">Winterwear</option>
+            <option value="Topwear">Áo</option>
+            <option value="Bottomwear">Quần</option>
+            <option value="WinterWear">Mùa đông</option>
           </select>
         </div>
         <div>
-          <p className='mb-2'>Product Price</p>
+          <p className='mb-2'>Giá sản phẩm</p>
           <input onChange={(e)=>setPrice(e.target.value)} value={price} className='w-full px-3 py-2 sm:w-[120px]' type='number' placeholder='25'/>
         </div>
       </div>
       <div>
-        <p className='mb-2'>Product Sizes</p>
+        <p className='mb-2'>Kích thước</p>
         <div className='flex gap-3'>
           <div onClick={()=>setSizes(prev => prev.includes("S") ? prev.filter(item => item !== "S") : [...prev,"S"])}>
             <p className={`${sizes.includes("S") ? "bg-pink-100":"bg-slate-200"} px-3 py-1 cursor-pointer`}>S</p>
@@ -126,9 +126,9 @@ const Add = ({token}) => {
       </div>
       <div className='flex gap-2 mt-2'>
         <input onChange={()=>setBestSeller(prev=>!prev)} checked={bestseller} type='checkbox' id='bestseller'/>
-        <label className='cursor-pointer' htmlFor='bestseller'>Add to bestseller</label>
+        <label className='cursor-pointer' htmlFor='bestseller'>Thêm vào bán chạy</label>
       </div>
-      <button className='w-28 py-3 mt-4 bg-black text-white' type='submit'>ADD</button>
+      <button className='w-28 py-3 mt-4 bg-black text-white' type='submit'>THÊM</button>
     </form>
   )
 }

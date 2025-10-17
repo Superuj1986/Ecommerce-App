@@ -8,21 +8,21 @@ const CartTotal = () => {
   return (
     <div className='w-full'>
       <div className='text-2xl'>
-        <Title text1={'CART'} text2={'TOTALS'} />
+        <Title text1={'Tổng'} text2={'Giỏ hàng'} />
       </div>
       <div className='flex flex-col gap-2 mt-2 text-sm'>
         <div className='flex justify-between'>
-            <p>Subtotal</p>
+            <p>Tổng sản phẩm</p>
             <p>{currency}{getCartAmount()}.00</p>
         </div>
         <hr/>
         <div className='flex justify-between'> 
-            <p>Shipping fee</p>
+            <p>Phí vận chuyển</p>
             <p>{currency}{delivery_fee}</p>
         </div>
         <hr/>
         <div className='flex justify-between'>
-            <b>Total</b>
+            <b>Tổng tiền</b>
             <b>{currency}{getCartAmount() === 0 ? 0 : getCartAmount() + delivery_fee}</b>
         </div>
       </div>
