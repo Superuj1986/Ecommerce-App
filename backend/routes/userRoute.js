@@ -9,6 +9,6 @@ userRouter.post('/admin',adminLogin)
 userRouter.get('/list',userList)
 userRouter.post('/delete',deleteUser)
 userRouter.put('/update/:id',authUser,updateUser)
-userRouter.post('/single',getUser)
+userRouter.post('/single',authUser,getUser)
 
 export default userRouter;
