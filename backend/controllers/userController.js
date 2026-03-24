@@ -59,7 +59,7 @@ const adminLogin = async (req, res) => {
     try {
         const { email, password } = req.body
         if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
-            const token = jwt.sign(email + password, process.env.JWT_SECRET);
+            const token = jwt.sign({ email }, process.env.JWT_SECRET);
             res.json({ success: true, token })
         } else {
             res.json({ success: false, message: "Invalid credentials" })
@@ -72,12 +72,15 @@ const adminLogin = async (req, res) => {
 
 const updateUser = async (req, res) => {
     try {
-        const data = req.body
-        await userModel.findByIdAndUpdate(
-            req.params.id,
-            data,
-            { new: true }
-        )
+        const data = { ...req.body }
+        delete data.userId
+        if (data.password) {
+            const salt = await bcrypt.genSalt(10)
+            data.password = await bcrypt.hash(data.password, salt)
+        } else {
+            delete data.password
+        }
+        await userModel.findByIdAndUpdate(req.params.id, data, { new: true })
         res.json({ success: true, message: "User Updated" })
     } catch (error) {
         console.log(error)
