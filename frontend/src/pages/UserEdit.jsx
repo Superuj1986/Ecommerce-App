@@ -3,8 +3,9 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { ShopContext } from '../context/ShopContext';
 
-const UserEdit = ({ userId, token }) => {
-    const { backendUrl } = useContext(ShopContext);
+const UserEdit = () => {
+    const { backendurl, token } = useContext(ShopContext);
+    const [userId, setUserId] = useState('');
   const [user, setUser] = useState({
     name: '',
     email: '',
@@ -13,19 +14,26 @@ const UserEdit = ({ userId, token }) => {
   });
 
   useEffect(() => {
-    // Lấy thông tin người dùng hiện tại
     const fetchUser = async () => {
+      if (!token) return;
       try {
-        const response = await axios.get(backendUrl + '/api/user/single',userId, {headers:{token}});
-        setUser(response.data);
+        const response = await axios.post(backendurl + '/api/user/single', {}, { headers: { token } });
+        if (response.data.success) {
+          setUserId(response.data.user._id);
+          setUser({
+            name: response.data.user.name || '',
+            email: response.data.user.email || '',
+            phone: response.data.user.phone || '',
+            password: '',
+          });
+        }
       } catch (error) {
         console.error(error);
         toast.error('Không thể tải thông tin người dùng.');
       }
     };
-
     fetchUser();
-  }, [userId, token]);
+  }, [token]);
 
   const handleChange = (field, value) => {
     setUser((prev) => ({ ...prev, [field]: value }));
@@ -34,8 +42,9 @@ const UserEdit = ({ userId, token }) => {
   const handleSave = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.put(backendUrl + `/api/user/update/${_id}`,user,{headers:{token}}
-      );
+      const payload = { name: user.name, email: user.email, phone: user.phone };
+      if (user.password) payload.password = user.password;
+      const response = await axios.put(backendurl + `/api/user/update/${userId}`, payload, { headers: { token } });
       if (response.data.success) {
         toast.success('Cập nhật thông tin người dùng thành công!');
       }
