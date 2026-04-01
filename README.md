@@ -37,7 +37,7 @@ cd ecommerce-app
 ```bash
 cd backend
 npm install
-cp .env
+cp .env (tự tạo ở root backend)
 ```
 
 Mở file `backend/.env` và điền các giá trị:
