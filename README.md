@@ -26,7 +26,7 @@
 ### 1. Clone repo
 
 ```bash
-git clone https://github.com/your-username/ecommerce-app.git
+git clone https://github.com/Superuj1986/Ecommerce-App
 cd ecommerce-app
 ```
 
@@ -37,7 +37,7 @@ cd ecommerce-app
 ```bash
 cd backend
 npm install
-cp .env.example .env
+cp .env
 ```
 
 Mở file `backend/.env` và điền các giá trị:
@@ -68,13 +68,12 @@ Backend chạy tại `http://localhost:4000`
 ```bash
 cd frontend
 npm install
-cp .env.example .env
 ```
 
 Nội dung `frontend/.env`:
 
 ```env
-VITE_BACKEND_URL = "http://localhost:4000"
+VITE_BACKEND_URL = 'http://localhost:4000'
 ```
 
 Khởi động frontend:
@@ -83,7 +82,7 @@ Khởi động frontend:
 npm run dev
 ```
 
-Frontend chạy tại `http://localhost:5173`
+Frontend chạy tại 'http://localhost:5173'
 
 ---
 
@@ -92,13 +91,12 @@ Frontend chạy tại `http://localhost:5173`
 ```bash
 cd admin
 npm install
-cp .env.example .env
 ```
 
 Nội dung `admin/.env`:
 
 ```env
-VITE_BACKEND_URL = "http://localhost:4000"
+VITE_BACKEND_URL = http://localhost:4000
 ```
 
 Khởi động admin:
@@ -137,10 +135,3 @@ ecommerce-app/
 └── admin/          # React app (quản trị)
 ```
 
----
-
-## Lưu ý bảo mật
-
-- Không commit file `.env` lên git (đã có trong `.gitignore`)
-- Đổi `JWT_SECRET` thành chuỗi ngẫu nhiên đủ dài
-- Đổi `ADMIN_EMAIL` và `ADMIN_PASSWORD` trước khi deploy
